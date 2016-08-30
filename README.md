@@ -22,7 +22,7 @@ install these npm modules
 **Make changes in config/webpack.config.js**
 
 change
-````json
+````jasvascript
  entry: {
     // Sources are expected to live in $app_root/webpack
     'application': './webpack/application.js'
@@ -30,11 +30,11 @@ change
 ````
 
 to
-````json
+````jasvascript
  entry: {
     // Sources are expected to live in $app_root/webpack
     'application': './webpack/application.jsx'
-  },
+  }
 ````
 
 **Rename webpack/application.js to webpack/application.jsx**
