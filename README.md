@@ -37,6 +37,33 @@ to
   }
 ````
 
+
+after
+
+````javascript
+output: {
+  ...
+},
+
+````
+
+add these lines
+
+````javascript
+  module: {
+    loaders: [
+      {
+        test: /\.jsx?/,
+        include: path.join(__dirname, '..', 'webpack'),
+        loader: 'babel',
+        query: {
+          presets: ['react']
+        }
+      }
+    ]
+  },
+````
+
 **Rename webpack/application.js to webpack/application.jsx**
 
 **Add this code to webpack/application.jsx**
