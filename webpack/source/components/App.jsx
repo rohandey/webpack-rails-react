@@ -4,7 +4,7 @@ import { Component } from 'react';
 export default class App extends Component{
 
   componentWillMount(){
-    console.log("Post Component mounting")
+    console.log("Super Component mounting")
   }
 
   render(){

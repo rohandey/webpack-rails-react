@@ -14,7 +14,8 @@ var production = process.env.NODE_ENV === 'production';
 var config = {
   entry: {
     // Sources are expected to live in $app_root/webpack
-    'application': './webpack/application.jsx'
+    'react_application': ['bootstrap-loader', './webpack/application.jsx'],
+
   },
 
   output: {
@@ -37,7 +38,11 @@ var config = {
         query: {
           presets: ['react']
         }
-      }
+      },
+
+      { test: /\.(woff2?|svg)$/, loader: 'url?limit=10000' },
+      { test: /\.(ttf|eot)$/, loader: 'file' },
+
     ]
   },
 
