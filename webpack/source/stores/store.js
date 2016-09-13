@@ -1,6 +1,8 @@
-import { createStore, compose} from 'redux';
+import { createStore, applyMiddleware, compose} from 'redux';
 import { syncHistoryWithStore} from 'react-router-redux';
 import { browserHistory, useRouterHistory } from 'react-router';
+
+import promise from 'redux-promise';
 
 import { createHistory } from 'history';
 
@@ -16,14 +18,25 @@ import rootReducer from '../reducers/index';
 
 
 //create default data
-const INITIAL_POSTS_STATE = {postsList: {posts: [], error:null, posts_loading: false}}
-
-const defaultState = {
-  posts: INITIAL_POSTS_STATE
+const INITIAL_POSTS_STATE = {
+  postsList: {posts: [], error:null, posts_loading: true},
+  current_post: { post: {}, error: null, post_loading: true }
 }
 
+const defaultState = {
+  posts: INITIAL_POSTS_STATE,
+}
+
+//apply promise middleware
+const finalCreateStore = compose(
+  applyMiddleware(promise)
+)(createStore);
+
 //create the store object to be used in the app
-const store = createStore(rootReducer, defaultState);
+const store = finalCreateStore(rootReducer, defaultState);
+
+
+
 
 export const history = syncHistoryWithStore(router_history, store);
 

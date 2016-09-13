@@ -1,5 +1,6 @@
 import React from 'react';
 import { Component } from 'react';
+import { Link } from 'react-router';
 
 export default class Header extends Component{
 
@@ -26,11 +27,13 @@ export default class Header extends Component{
 
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav">
-                <li className="active"><a href="#">Link <span className="sr-only">(current)</span></a></li>
+                <li>
+                  <Link to={'/posts'}>Posts</Link>
+                </li>
               </ul>
 
               <ul className="nav navbar-nav navbar-right">
-                <li><a href="#">Link</a></li>
+                <li><Link to='contact/'>Contact</Link></li>
                 <li className="dropdown">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
                   <ul className="dropdown-menu">
