@@ -6,9 +6,14 @@ import { push } from 'react-router-redux';
 class PostRow extends React.Component{
   render(){
     return (
-        <li>
+      <tr>
+        <td>
           <Link to={"/posts/" + this.props.post.id }>{this.props.post.title}</Link>
-        </li>
+        </td>
+        <td>
+      {this.props.post.body}
+        </td>
+      </tr>
     )
   }
 }
@@ -52,13 +57,21 @@ export default class Posts extends React.Component{
       return (
         <div className='container'>
           <h1>Posts</h1>
-          <Link to={{ pathname: 'posts', query: { sort_column: 'title', sort_order: sort_order } }} onClick={this.sort_column.bind(this, 'title', sort_order)}>Sort Name</Link>
-        &nbsp;
-          <Link to={{ pathname: 'posts', query: { sort_column: 'body', sort_order: sort_order } }} onClick={this.sort_column.bind(this, 'body', sort_order)}>Sort Body</Link>
-
-          <ul>
-          {this.renderPosts(posts)}
-          </ul>
+          <table>
+            <thead>
+              <tr>
+                <th>
+                  <Link to={{ pathname: 'posts', query: { sort_column: 'title', sort_order: sort_order } }} onClick={this.sort_column.bind(this, 'title', sort_order)}>Title</Link>
+                </th>
+                <th>
+                  <Link to={{ pathname: 'posts', query: { sort_column: 'body', sort_order: sort_order } }} onClick={this.sort_column.bind(this, 'body', sort_order)}>Body</Link>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            {this.renderPosts(posts)}
+            </tbody>
+          </table>
         </div>
       )
     }

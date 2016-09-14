@@ -4,14 +4,14 @@ import { browserHistory, useRouterHistory } from 'react-router';
 
 import promise from 'redux-promise';
 
-//import { createHistory } from 'history';
+import { createHistory } from 'history';
 
 // custom history is picked up from
 // https://github.com/tomduncalf/react-router-base-issue/blob/master/src/routes/Routes.jsx
 // for fixing basename warning issue
 // https://github.com/reactjs/react-router/issues/3387
 
-//const router_history = useRouterHistory(createHistory)({ basename: '' });
+const router_history = useRouterHistory(createHistory)({ basename: '' });
 
 //import root reducer
 import rootReducer from '../reducers/index';
@@ -29,7 +29,7 @@ const defaultState = {
 
 //apply promise middleware
 const finalCreateStore = compose(
-  applyMiddleware(promise, routerMiddleware(browserHistory))
+  applyMiddleware(promise, routerMiddleware(router_history))
 )(createStore);
 
 //create the store object to be used in the app
@@ -38,6 +38,6 @@ const store = finalCreateStore(rootReducer, defaultState);
 
 
 
-export const history = syncHistoryWithStore(browserHistory, store);
+export const history = syncHistoryWithStore(router_history, store);
 
 export default store;
