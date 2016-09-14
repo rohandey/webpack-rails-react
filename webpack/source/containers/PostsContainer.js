@@ -5,16 +5,19 @@ import { fetchPosts, fetchPostsSuccess, fetchPostsFailure, resetPostsList } from
 import Posts from '../components/Posts.jsx';
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, passed_props) => {
   return{
-    postsList: state.posts.postsList
+    postsList: state.posts.postsList,
+    query: passed_props.query
+
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetchPosts: () => {
-      dispatch(fetchPosts()).then((response) => {
+    dispatch,
+    fetchPosts: (sort_column, sort_order) => {
+      dispatch(fetchPosts(sort_column, sort_order)).then((response) => {
             !response.error ? dispatch(fetchPostsSuccess(response.payload)) : dispatch(fetchPostsFailure(response.payload));
           });
     },

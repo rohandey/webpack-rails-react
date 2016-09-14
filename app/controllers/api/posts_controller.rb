@@ -1,7 +1,9 @@
 class Api::PostsController < ApplicationController
 
   def index
-    render json: Post.all
+    params[:sort_column] ||= 'title'
+    params[:sort_order] ||= 'asc'
+    render json: Post.all.order("#{params[:sort_column]} #{params[:sort_order]}")
   end
 
   def show

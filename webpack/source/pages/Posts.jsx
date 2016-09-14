@@ -6,7 +6,7 @@ export default class Posts extends Component{
 
   render(){
     return (
-      <PostsContainer>
+      <PostsContainer query={this.props.location.query}>
         {this.props.children}
       </PostsContainer>
     )

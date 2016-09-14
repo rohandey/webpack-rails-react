@@ -1,10 +1,14 @@
 import axios from 'axios';
 
-export function fetchPosts(){
+export function fetchPosts(sort_column, sort_order){
   const request = axios({
     method: 'get',
     url: 'http://localhost:5000/api/posts',
-    headers: []
+    headers: [],
+    params: {
+      sort_column,
+      sort_order
+    }
   });
 
   return {
