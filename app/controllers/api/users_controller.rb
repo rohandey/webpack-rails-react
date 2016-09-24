@@ -1,5 +1,7 @@
 class Api::UsersController < ApplicationController
 
+  skip_before_filter :verify_authenticity_token
+
   def create
     @user = User.new(permitted_user_params)
     if @user.save

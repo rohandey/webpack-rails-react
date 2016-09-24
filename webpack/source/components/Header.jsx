@@ -35,9 +35,11 @@ export default class Header extends Component{
               <ul className="nav navbar-nav navbar-right">
                 <li><Link to='contact/'>Contact</Link></li>
                 <li className="dropdown">
-                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span className="caret"></span></a>
+                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hey <span className="caret"></span></a>
                   <ul className="dropdown-menu">
-                    <li><a href="#">Action</a></li>
+                    <li>
+                      <Link to='/signup'>SignUp</Link>
+                    </li>
 
                   </ul>
                 </li>

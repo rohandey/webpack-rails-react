@@ -23,8 +23,13 @@ const INITIAL_POSTS_STATE = {
   current_post: { post: {}, error: null, post_loading: true }
 }
 
+const INITIAL_SIGNUP_USER_STATE = {
+  new_user:{ user: null, error: null, loading: false }
+}
+
 const defaultState = {
   posts: INITIAL_POSTS_STATE,
+  signup_user: INITIAL_SIGNUP_USER_STATE
 }
 
 //apply promise middleware
