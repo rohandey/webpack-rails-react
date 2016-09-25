@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware, compose} from 'redux';
 import {routerMiddleware,  syncHistoryWithStore} from 'react-router-redux';
 import { browserHistory, useRouterHistory } from 'react-router';
-
+import devTools from 'remote-redux-devtools';
 import promise from 'redux-promise';
 
 import { createHistory } from 'history';
@@ -34,7 +34,8 @@ const defaultState = {
 
 //apply promise middleware
 const finalCreateStore = compose(
-  applyMiddleware(promise, routerMiddleware(router_history))
+  applyMiddleware(promise, routerMiddleware(router_history)),
+  devTools({ realtime: true })
 )(createStore);
 
 //create the store object to be used in the app
