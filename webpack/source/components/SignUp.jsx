@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-
+import { push } from 'react-router-redux';
 
 class SignUpForm extends React.Component{
 
@@ -55,6 +55,21 @@ class SignUp extends React.Component{
         that.props.create_user(data)
       }
     };
+  }
+
+  componentDidMount(){
+    this.redirect_if_logged_in()
+  }
+
+  componentDidUpdate() {
+    this.redirect_if_logged_in()
+  }
+
+  redirect_if_logged_in(){
+    console.log(this.props.current_user.user )
+    if(this.props.current_user.user != null){
+      this.props.unauthenticated_redirect()
+    }
   }
 
   render(){

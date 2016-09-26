@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
-import App from '../components/Header.jsx';
+import Header from '../components/Header.jsx';
 
-const mapDispatchToProps = (dispatch) => {
-  return {
 
+const mapStateToProps = (state) => {
+  return{
+    current_user: state.current_user
   }
 }
 
-export default connect(null, mapDispatchToProps)(App);
+
+
+export default connect(mapStateToProps, null)(Header);

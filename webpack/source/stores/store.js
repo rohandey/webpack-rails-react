@@ -27,9 +27,14 @@ const INITIAL_SIGNUP_USER_STATE = {
   new_user:{ user: null, error: null, loading: false }
 }
 
+const INITIAL_CURRENT_USER_STATE = {
+   user: null, error: null, loading: false
+}
+
 const defaultState = {
   posts: INITIAL_POSTS_STATE,
-  signup_user: INITIAL_SIGNUP_USER_STATE
+  signup_user: INITIAL_SIGNUP_USER_STATE,
+  current_user: INITIAL_CURRENT_USER_STATE
 }
 
 //apply promise middleware

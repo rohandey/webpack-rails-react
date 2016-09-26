@@ -2,13 +2,35 @@ import React from 'react';
 import { Component } from 'react';
 import { Link } from 'react-router';
 
+import {modal} from 'react-redux-modal'; // The modal emitter
+
+
+import SignInModalContainer from '../containers/SignInModalContainer';
+
 export default class Header extends Component{
 
   componentWillMount(){
     console.log("Header Component mounting")
   }
 
+  addModal(e) {
+    e.preventDefault();
+    console.log(this.props)
+    let that = this
+    modal.add(SignInModalContainer, {
+      title: 'Sign In',
+      size: 'medium',
+      closeOnOutsideClick: false,
+      hideCloseButton: false
+    });
+  }
+
   render(){
+    let current_user = this.props.current_user
+    let name = ''
+    if(current_user && current_user.user && current_user.user.name) {
+      name = current_user.user.name
+    }
     return (
       <div>
         <nav className="navbar navbar-default">
@@ -35,10 +57,12 @@ export default class Header extends Component{
               <ul className="nav navbar-nav navbar-right">
                 <li><Link to='contact/'>Contact</Link></li>
                 <li className="dropdown">
-                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hey <span className="caret"></span></a>
+                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hey {name}<span className="caret"></span></a>
                   <ul className="dropdown-menu">
                     <li>
                       <Link to='/signup'>SignUp</Link>
+                      <a href='#' onClick={this.addModal.bind(this)}>SignIn</a>
+
                     </li>
 
                   </ul>

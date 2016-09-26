@@ -7,7 +7,8 @@ import SignUp from '../components/SignUp.jsx';
 
 const mapStateToProps = (state) => {
   return{
-    new_user: state.signup_user.new_user
+    new_user: state.signup_user.new_user,
+    current_user: state.current_user,
   }
 }
 
@@ -25,6 +26,11 @@ const mapDispatchToProps = (dispatch) => {
 
 
       });
+    },
+
+    unauthenticated_redirect: () => {
+      console.log('redirct')
+      dispatch(push('/posts'));
     }
   }
 }

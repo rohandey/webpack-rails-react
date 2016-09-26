@@ -5,8 +5,9 @@ Rails.application.routes.draw do
 
     resources :users
 
-    get 'signin' => 'session#new'
+    post 'signin' => 'session#new'
     get 'signout' => 'session#destroy'
+    post 'authenticate' => 'session#authenticate'
   end
 
   root 'application#index'

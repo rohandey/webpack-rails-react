@@ -5,6 +5,7 @@ import { Router , Route, IndexRoute, useRouterHistory, browserHistory } from 're
 
 
 import { Provider } from 'react-redux';
+import ReduxModal from 'react-redux-modal'
 import store, { history } from 'source/stores/store.js'
 
 
@@ -18,17 +19,21 @@ import Posts from 'source/pages/Posts.jsx';
 
 render(
     <Provider store={store}>
-      <Router history={history}>
-        <Route path='/' component={App}>
-          <IndexRoute component={AboutUs} />
-          <Route path='/about' component={AboutUs} />
-          <Route path='/contact' component={Contact} />
-          <Route path='/posts' component={Posts}/>
-          <Route path='/posts/:id' component={PostShow}/>
+      <div>
+        <Router history={history}>
+          <Route path='/' component={App}>
+            <IndexRoute component={AboutUs} />
+            <Route path='/about' component={AboutUs} />
+            <Route path='/contact' component={Contact} />
+            <Route path='/posts' component={Posts}/>
+            <Route path='/posts/:id' component={PostShow}/>
 
-          <Route path='/signup' component={SignUp}/>
-        </Route>
-      </Router>
+            <Route path='/signup' component={SignUp}/>
+          </Route>
+        </Router>
+
+       <ReduxModal />
+      </div>
     </Provider>
     ,
     document.getElementById('app')
