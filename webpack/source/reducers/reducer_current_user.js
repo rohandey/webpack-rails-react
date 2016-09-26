@@ -18,6 +18,9 @@ export default function(state = {}, action) {
     case 'USER_FROM_AUTH_TOKEN_SUCCESS':
       return Object.assign({}, state, { user: action.payload.data,  error: null, loading: false });
 
+    case 'SIGNOUT_USER':
+      return Object.assign({}, state, { user: null,  error: null, loading: false });
+
     default:
       return state;
   }

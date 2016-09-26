@@ -29,7 +29,6 @@ const mapDispatchToProps = (dispatch) => {
     },
 
     unauthenticated_redirect: () => {
-      console.log('redirct')
       dispatch(push('/posts'));
     }
   }

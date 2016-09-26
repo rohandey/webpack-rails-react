@@ -39,3 +39,10 @@ export function user_from_auth_token_success(user){
     payload: user
   }
 }
+
+export function signout_user(){
+  return {
+    type: 'SIGNOUT_USER',
+    payload: {}
+  }
+}

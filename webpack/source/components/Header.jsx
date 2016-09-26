@@ -7,23 +7,79 @@ import {modal} from 'react-redux-modal'; // The modal emitter
 
 import SignInModalContainer from '../containers/SignInModalContainer';
 
+class LoginLinks extends Component{
+
+  sign_out(e){
+    e.preventDefault()
+    this.context.sign_out()
+  }
+
+  addModal(e){
+    e.preventDefault()
+    this.context.addModal()
+  }
+
+  render(){
+    let current_user = this.props.current_user
+    let name = ''
+    name = current_user && current_user.user && current_user.user.name
+
+    if(name === null) {
+      return(
+        <ul className="dropdown-menu">
+          <li>
+            <Link to='/signup'>SignUp</Link>
+          </li>
+          <li>
+            <a href='#' onClick={this.addModal.bind(this)}>SignIn</a>
+          </li>
+        </ul>
+      )
+    }else{
+      return(
+        <ul className="dropdown-menu">
+          <li>
+            <a href='#' onClick={this.sign_out.bind(this)}>Sign Out</a>
+          </li>
+        </ul>
+      )
+    }
+
+  }
+}
+
+LoginLinks.contextTypes = {
+    sign_out: React.PropTypes.func,
+    addModal: React.PropTypes.func
+}
+
 export default class Header extends Component{
 
   componentWillMount(){
     console.log("Header Component mounting")
   }
 
-  addModal(e) {
-    e.preventDefault();
-    console.log(this.props)
+  getChildContext(e) {
+
     let that = this
-    modal.add(SignInModalContainer, {
-      title: 'Sign In',
-      size: 'medium',
-      closeOnOutsideClick: false,
-      hideCloseButton: false
-    });
+    return {
+      sign_out(data){
+        that.props.sign_out()
+      },
+
+      addModal() {
+        modal.add(SignInModalContainer, {
+          title: 'Sign In',
+          size: 'medium',
+          closeOnOutsideClick: false,
+          hideCloseButton: false
+        });
+      }
+
+    };
   }
+
+
 
   render(){
     let current_user = this.props.current_user
@@ -58,14 +114,9 @@ export default class Header extends Component{
                 <li><Link to='contact/'>Contact</Link></li>
                 <li className="dropdown">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hey {name}<span className="caret"></span></a>
-                  <ul className="dropdown-menu">
-                    <li>
-                      <Link to='/signup'>SignUp</Link>
-                      <a href='#' onClick={this.addModal.bind(this)}>SignIn</a>
 
-                    </li>
+                  <LoginLinks current_user={current_user}></LoginLinks>
 
-                  </ul>
                 </li>
               </ul>
             </div>
@@ -74,4 +125,10 @@ export default class Header extends Component{
       </div>
     )
   }
+}
+
+Header.childContextTypes = {
+ sign_out: React.PropTypes.func,
+ addModal: React.PropTypes.func
+
 }
