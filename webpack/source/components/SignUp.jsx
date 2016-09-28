@@ -66,7 +66,6 @@ class SignUp extends React.Component{
   }
 
   redirect_if_logged_in(){
-    console.log(this.props.current_user.user )
     if(this.props.current_user.user != null){
       this.props.unauthenticated_redirect()
     }

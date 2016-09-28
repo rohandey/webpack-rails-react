@@ -4,14 +4,20 @@ import { push } from 'react-router-redux';
 
 
 class PostRow extends React.Component{
+
   render(){
+    const {post, current_user} = this.props
+
     return (
       <tr>
         <td>
-          <Link to={"/posts/" + this.props.post.id }>{this.props.post.title}</Link>
+          <Link to={"/posts/" + post.id }>{post.title}</Link>
         </td>
         <td>
-      {this.props.post.body}
+          {post.body}
+        </td>
+        <td>
+          {current_user.user == null ? '' : <Link to={"/post/" + post.id + "/edit"}>edit</Link>}
         </td>
       </tr>
     )
@@ -40,16 +46,17 @@ export default class Posts extends React.Component{
     this.props.fetchPosts(sort_column, sort_order);
   }
 
-  renderPosts(posts){
+  renderPosts(posts, current_user){
     return posts.map((post) => {
       return (
-        <PostRow post={post} key={post.id}/>
+        <PostRow post={post} key={post.id} current_user={current_user}/>
       )
     });
   }
 
   render(){
     const { posts, posts_loading, error } = this.props.postsList;
+    const current_user = this.props.current_user;
     let sort_order = this.props.query.sort_order == 'asc' ? 'desc' : 'asc'
     if(posts_loading == true){
       return  <div>Loading</div>;
@@ -57,6 +64,8 @@ export default class Posts extends React.Component{
       return (
         <div className='container'>
           <h1>Posts</h1>
+
+          {current_user.user == null ? '' : (<Link to='/posts/new' className='btn btn-primary'>Add Post</Link>)}
           <table>
             <thead>
               <tr>
@@ -66,10 +75,12 @@ export default class Posts extends React.Component{
                 <th>
                   <Link to={{ pathname: 'posts', query: { sort_column: 'body', sort_order: sort_order } }} onClick={this.sort_column.bind(this, 'body', sort_order)}>Body</Link>
                 </th>
+                <th>
+                </th>
               </tr>
             </thead>
             <tbody>
-            {this.renderPosts(posts)}
+            {this.renderPosts(posts, current_user)}
             </tbody>
           </table>
         </div>

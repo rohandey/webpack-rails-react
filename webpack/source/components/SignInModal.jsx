@@ -28,7 +28,7 @@ export default class SignInModalComponent extends React.Component{
       'password': this.refs.password.value
     }
 
-    this.props.signin_user(data);
+    this.props.signin_user(data, this.props.history_obj, this.props.location_path)
   }
 
   render() {

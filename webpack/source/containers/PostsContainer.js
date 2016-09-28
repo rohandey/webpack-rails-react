@@ -8,8 +8,8 @@ import Posts from '../components/Posts.jsx';
 const mapStateToProps = (state, passed_props) => {
   return{
     postsList: state.posts.postsList,
-    query: passed_props.query
-
+    query: passed_props.query,
+    current_user: state.current_user
   }
 }
 

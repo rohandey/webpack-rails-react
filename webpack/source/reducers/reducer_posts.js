@@ -27,6 +27,15 @@ export default function(state = {}, action) {
     case 'RESET_POST':
       return Object.assign({}, state, { current_post: { post: {}, error: null, post_loading: true } })
 
+    case 'CREATE_POST':
+      return Object.assign({}, state, { new_post: { post: null, error: null, loading: true }});
+
+    case 'CREATE_POST_SUCCESS':
+      return Object.assign({}, state, { new_post: { post: action.payload.data, error: null, loading: false } });
+
+    case 'CREATE_POST_FAILURE':
+      return Object.assign({}, state, { new_post: { post: {}, error: action.payload.response.data.errors, loading: false } });
+
     default:
       return state;
   }

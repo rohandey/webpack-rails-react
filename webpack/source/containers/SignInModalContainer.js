@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { push } from 'react-router-redux';
+import { push, replace } from 'react-router-redux';
 import { signin_user, signin_user_failure, signin_user_success } from '../actions/signin_user';
 
 import SignInModalComponent from '../components/SignInModal.jsx';
@@ -15,7 +15,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
 
-    signin_user: (data) => {
+    signin_user: (data, history_obj, location_path) => {
       dispatch(signin_user(data)).then((response) => {
         if(response.error){
           dispatch(signin_user_failure(response.payload));
@@ -23,6 +23,8 @@ const mapDispatchToProps = (dispatch) => {
           //in real apps auth token to be set in place of user id
           localStorage.setItem('auth_token', response.payload.data.id);
           dispatch(signin_user_success(response.payload));
+          dispatch(replace('/'))
+          dispatch(replace(location_path))
         }
 
       });

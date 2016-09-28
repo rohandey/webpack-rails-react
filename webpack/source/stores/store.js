@@ -20,7 +20,8 @@ import rootReducer from '../reducers/index';
 //create default data
 const INITIAL_POSTS_STATE = {
   postsList: {posts: [], error:null, posts_loading: true},
-  current_post: { post: {}, error: null, post_loading: true }
+  current_post: { post: {}, error: null, post_loading: true },
+  new_post: { post: {}, error: null, loading: true }
 }
 
 const INITIAL_SIGNUP_USER_STATE = {

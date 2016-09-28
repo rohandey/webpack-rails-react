@@ -72,7 +72,9 @@ export default class Header extends Component{
           title: 'Sign In',
           size: 'medium',
           closeOnOutsideClick: false,
-          hideCloseButton: false
+          hideCloseButton: false,
+          history_obj: that.props.history_obj,
+          location_path: that.props.location_path
         });
       }
 
@@ -82,6 +84,8 @@ export default class Header extends Component{
 
 
   render(){
+    //this.props.history_obj.replace(this.props.location_path)
+    //return
     let current_user = this.props.current_user
     let name = ''
     if(current_user && current_user.user && current_user.user.name) {

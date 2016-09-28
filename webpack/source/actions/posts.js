@@ -73,3 +73,25 @@ export function resetPost(){
     payload: {}
   }
 }
+
+export function create_post(data){
+  const request = axios.post('http://localhost:5000/api/posts', data)
+  return {
+    type: 'CREATE_POST',
+    payload: request
+  }
+}
+
+export function create_post_success(post){
+  return {
+    type: 'CREATE_POST_SUCCESS',
+    payload: post
+  }
+}
+
+export function create_post_failure(error){
+  return {
+    type: 'CREATE_POST_FAILURE',
+    payload: error
+  }
+}
