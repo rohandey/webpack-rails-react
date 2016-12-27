@@ -15,7 +15,6 @@ var config = {
   entry: {
     // Sources are expected to live in $app_root/webpack
     'react_application': ['bootstrap-loader', './webpack/application.jsx'],
-
   },
 
   output: {
